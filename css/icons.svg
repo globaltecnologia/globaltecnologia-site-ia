@@ -1,0 +1,66 @@
+<!-- Sustentação de sistemas -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="48" height="48">
+  <circle cx="32" cy="32" r="10" fill="none" stroke="#003366" stroke-width="2.5"/>
+  <path d="M32 6 L32 14 M32 50 L32 58 M6 32 L14 32 M50 32 L58 32 M13 13 L19 19 M45 45 L51 51 M51 13 L45 19 M19 45 L13 51" stroke="#003366" stroke-width="2.5" stroke-linecap="round"/>
+  <path d="M28 44 Q28 52 36 52 Q44 52 44 44" fill="none" stroke="#2E8BC0" stroke-width="2.5" stroke-linecap="round"/>
+</svg>
+
+<!-- Desenvolvimento de software -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="48" height="48">
+  <rect x="8" y="10" rx="4" ry="4" width="48" height="44" fill="none" stroke="#003366" stroke-width="2.5"/>
+  <line x1="8" y1="20" x2="56" y2="20" stroke="#003366" stroke-width="2"/>
+  <circle cx="16" cy="15" r="2" fill="#003366"/>
+  <circle cx="24" cy="15" r="2" fill="#2E8BC0"/>
+  <circle cx="32" cy="15" r="2" fill="#003366"/>
+  <path d="M24 32 L18 40 L24 48" fill="none" stroke="#003366" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M40 32 L46 40 L40 48" fill="none" stroke="#003366" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+  <line x1="34" y1="30" x2="30" y2="50" stroke="#2E8BC0" stroke-width="2.5" stroke-linecap="round"/>
+</svg>
+
+<!-- Modernização de aplicações -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="48" height="48">
+  <rect x="6" y="42" rx="3" ry="3" width="22" height="16" fill="none" stroke="#003366" stroke-width="2.5"/>
+  <line x1="14" y1="48" x2="20" y2="48" stroke="#003366" stroke-width="2" stroke-linecap="round"/>
+  <rect x="26" y="10" rx="3" ry="3" width="32" height="26" fill="none" stroke="#003366" stroke-width="2.5"/>
+  <path d="M22 44 L28 32 L38 22 L52 14" fill="none" stroke="#2E8BC0" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+  <polyline points="44,14 52,14 52,22" fill="none" stroke="#2E8BC0" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>
+
+<!-- Outsourcing Especializado -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="48" height="48">
+  <circle cx="22" cy="22" r="10" fill="none" stroke="#003366" stroke-width="2.5"/>
+  <path d="M17 20 Q22 14 27 20" fill="none" stroke="#003366" stroke-width="2" stroke-linecap="round"/>
+  <circle cx="42" cy="22" r="10" fill="none" stroke="#003366" stroke-width="2.5"/>
+  <path d="M37 20 Q42 14 47 20" fill="none" stroke="#003366" stroke-width="2" stroke-linecap="round"/>
+  <circle cx="32" cy="48" r="10" fill="none" stroke="#003366" stroke-width="2.5"/>
+  <path d="M27 46 Q32 40 37 46" fill="none" stroke="#003366" stroke-width="2" stroke-linecap="round"/>
+  <line x1="27" y1="30" x2="30" y2="40" stroke="#2E8BC0" stroke-width="2.5" stroke-linecap="round"/>
+  <line x1="37" y1="30" x2="34" y2="40" stroke="#2E8BC0" stroke-width="2.5" stroke-linecap="round"/>
+  <line x1="30" y1="26" x2="34" y2="26" stroke="#2E8BC0" stroke-width="2.5" stroke-linecap="round"/>
+</svg>
+
+<!-- Inteligência Artificial -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="48" height="48">
+  <rect x="18" y="18" rx="4" ry="4" width="28" height="28" fill="none" stroke="#003366" stroke-width="2.5"/>
+  <circle cx="32" cy="32" r="6" fill="none" stroke="#2E8BC0" stroke-width="2.5"/>
+  <line x1="32" y1="22" x2="32" y2="12" stroke="#2E8BC0" stroke-width="2.5" stroke-linecap="round"/>
+  <line x1="32" y1="42" x2="32" y2="52" stroke="#2E8BC0" stroke-width="2.5" stroke-linecap="round"/>
+  <line x1="22" y1="32" x2="12" y2="32" stroke="#2E8BC0" stroke-width="2.5" stroke-linecap="round"/>
+  <line x1="42" y1="32" x2="52" y2="32" stroke="#2E8BC0" stroke-width="2.5" stroke-linecap="round"/>
+  <circle cx="32" cy="10" r="3" fill="#003366"/>
+  <circle cx="32" cy="54" r="3" fill="#003366"/>
+  <circle cx="10" cy="32" r="3" fill="#003366"/>
+  <circle cx="54" cy="32" r="3" fill="#003366"/>
+  <circle cx="24" cy="24" r="2.5" fill="#003366"/>
+  <circle cx="40" cy="24" r="2.5" fill="#003366"/>
+  <circle cx="24" cy="40" r="2.5" fill="#003366"/>
+  <circle cx="40" cy="40" r="2.5" fill="#003366"/>
+</svg>
+
+<!-- Sustentação (monitoramento - pilar secundário) -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="48" height="48">
+  <path d="M32 6 L54 18 V34 C54 48 32 58 32 58 C32 58 10 48 10 34 V18 Z" fill="none" stroke="#003366" stroke-width="2.5" stroke-linejoin="round"/>
+  <path d="M24 32 L30 38 L42 26" fill="none" stroke="#2E8BC0" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>
+
+<!-- Modernização (pilar secundário) - já coberto pelo icon principal -->
