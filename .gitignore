@@ -1,0 +1,17 @@
+# Environment files (segredos não versionados)
+.env
+.env.*.local
+
+# Wrangler cache
+.wrangler/
+
+# Editor / OS
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# System
+.DS_Store
+Thumbs.db

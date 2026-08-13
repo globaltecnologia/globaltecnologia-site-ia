@@ -1,0 +1,14 @@
+[siteglobal]
+
+account_id = "18a324c1eb5c661113310d978ffb152b"
+
+[siteglobal.production]
+branch = "main"
+
+[[siteglobal.production.routes]]
+pattern = "www.globaltecnologia.net/*"
+zone_name = "globaltecnologia.net"
+
+[siteglobal.production.build]
+command = ""           # estático — sem build step
+output_dir = "."       # raiz do projeto

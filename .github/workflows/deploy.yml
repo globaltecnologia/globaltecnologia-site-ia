@@ -1,0 +1,96 @@
+name: Deploy Site Global
+
+on:
+  push:
+    branches: [main, staging]
+  workflow_dispatch:
+    inputs:
+      environment:
+        description: 'Ambiente de deploy'
+        required: true
+        default: 'production'
+        type: choice
+        options:
+          - production
+          - staging
+
+env:
+  CLOUDFLARE_ACCOUNT_ID: 18a324c1eb5c661113310d978ffb152b
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      - name: Install wrangler
+        run: npm install -g wrangler@latest
+
+      - name: Validate wrangler
+        run: wrangler whoami
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+
+      - name: Determine target
+        id: target
+        run: |
+          if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
+            echo "environment=${{ github.event.inputs.environment }}" >> $GITHUB_OUTPUT
+          elif [ "${{ github.ref_name }}" = "staging" ]; then
+            echo "environment=staging" >> $GITHUB_OUTPUT
+          else
+            echo "environment=production" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Deploy to Cloudflare Pages
+        run: |
+          ENV="${{ steps.target.outputs.environment }}"
+          BRANCH="${{ github.ref_name }}"
+
+          if [ "$ENV" = "staging" ]; then
+            echo "🟡 Deploy STAGING (preview URL)"
+            WRANGLER_OUTPUT=$(npx wrangler pages deploy . \
+              --project-name siteglobal \
+              --branch "$BRANCH" \
+              --no-bundle 2>&1)
+            echo "$WRANGLER_OUTPUT"
+
+            # Extrair URL preview do output
+            PREVIEW_URL=$(echo "$WRANGLER_OUTPUT" | grep -oP 'https://[a-z0-9-]+\.pages\.dev' | head -1)
+            echo "preview_url=$PREVIEW_URL" >> $GITHUB_OUTPUT
+          else
+            echo "🔵 Deploy PRODUCTION (www.globaltecnologia.net)"
+            npx wrangler pages deploy . \
+              --project-name siteglobal \
+              --branch main \
+              --no-bundle
+          fi
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+
+      - name: Register production domain
+        if: steps.target.outputs.environment == 'production'
+        run: |
+          curl -s -X POST \
+            "https://api.cloudflare.com/client/v4/accounts/${{ env.CLOUDFLARE_ACCOUNT_ID }}/pages/projects/siteglobal/domains" \
+            -H "Authorization: Bearer ${{ secrets.CLOUDFLARE_API_TOKEN }}" \
+            -H "Content-Type: application/json" \
+            --data '{"name": "www.globaltecnologia.net"}'
+        continue-on-error: true
+
+      - name: Summary
+        run: |
+          echo "## Deploy Summary" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "**Environment:** ${{ steps.target.outputs.environment }}" >> $GITHUB_STEP_SUMMARY
+          echo "**Branch:** ${{ github.ref_name }}" >> $GITHUB_STEP_SUMMARY
+          echo "**Commit:** ${{ github.sha }}" >> $GITHUB_STEP_SUMMARY
+          echo "**Author:** ${{ github.actor }}" >> $GITHUB_STEP_SUMMARY
