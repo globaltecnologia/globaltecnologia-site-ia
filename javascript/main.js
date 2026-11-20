@@ -58,11 +58,19 @@ if (reveals.length && 'IntersectionObserver' in window) {
   var maxH = Math.max(700, window.innerHeight * 0.75); // start tall (~55-60vh)
   var loaded = false;
   var scrollHandled = false;
+  var lastH = -1;      // histerese anti-loop (tremor do iframe)
 
   iframe.addEventListener('load', function() {
     loaded = true;
     if (loading) loading.style.display = 'none';
   });
+
+  function applyHeight(h) {
+    var newH = Math.round(h);
+    if (Math.abs(newH - lastH) < 4) return; // histerese: ignora variações sub-pixel
+    lastH = newH;
+    wrapper.style.height = newH + 'px';
+  }
 
   function updateHeight() {
     var section = wrapper.closest('.cta');
@@ -75,7 +83,7 @@ if (reveals.length && 'IntersectionObserver' in window) {
     var sectionVisible = rect.bottom > -100 && rect.top < viewportH + 200;
 
     if (!sectionVisible) {
-      wrapper.style.height = maxH + 'px';
+      applyHeight(maxH);
       return;
     }
 
@@ -88,18 +96,19 @@ if (reveals.length && 'IntersectionObserver' in window) {
     var progress = Math.min(scrollTopIntoSection / Math.max(1, sectionH), 1);
     var currentH = maxH - (progress * availableGrow);
 
-    wrapper.style.height = Math.max(minH, Math.min(maxH, currentH)) + 'px';
+    applyHeight(Math.max(minH, Math.min(maxH, currentH)));
   }
 
   // Always set initial full height immediately
   function initHeight() {
-    wrapper.style.height = maxH + 'px';
+    lastH = -1;
+    applyHeight(maxH);
   }
 
   window.addEventListener('scroll', updateHeight, { passive: true });
   window.addEventListener('resize', function() {
-    maxH = Math.max(600, window.innerHeight * 0.55);
-    initHeight();
+    maxH = Math.max(700, window.innerHeight * 0.75); // unificado com o init
+    initHeight(); // reseta lastH internamente
   });
 
   // Initial setup
